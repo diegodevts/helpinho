@@ -1,0 +1,266 @@
+<div class="flex flex-col items-center justify-center" style="width: 900px">
+  <div style="width: 330px" class="mb-2">
+    <img
+      [src]="stepsSrc"
+      alt="logo"
+      class="bg-[#F0F0F0] rounded-xl border border-[#E7E7E7] mb-2"
+      [ngStyle]="{ height: step == 4 ? '55px' : '55px' }"
+    />
+  </div>
+
+  <div
+    class="bg-white rounded-xl flex flex-col p-5 mb-2 h-96"
+    style="width: 100%"
+  >
+    <div *ngIf="step == 1" class="flex flex-col">
+      <label class="text-[#3D3D3D]-500 text-md font-medium">
+        Em que categoria se encaixa seu helpinho?
+      </label>
+      <label class="text-gray-500 text-xs">
+        Escolha pelo menos uma das categorias abaixo que represente seu
+        helpinho.
+      </label>
+
+      <div class="mt-12 flex flex-row gap-2">
+        <button (click)="setCategory('Música')">
+          <img
+            src="assets/music.png"
+            alt="logo"
+            width="90px"
+            height="40px"
+            class="mb-20"
+            [ngStyle]="{
+              filter:
+                userHelper.category == 'Música'
+                  ? 'saturate(200%) brightness(1.5) sepia(0.1) hue-rotate(0deg) drop-shadow(0 0 0 #FF2E6B)'
+                  : '',
+              border:
+                userHelper.category == 'Música' ? '#FF2E6B solid 2px' : '',
+              'border-radius': userHelper.category == 'Música' ? '10px' : ''
+            }"
+          />
+        </button>
+        <button (click)="setCategory('Games')">
+          <img
+            src="assets/games.png"
+            alt="logo"
+            width="90px"
+            height="40px"
+            class="mb-20"
+            [ngStyle]="{
+              filter:
+                userHelper.category == 'Games'
+                  ? 'saturate(200%) brightness(1.5) sepia(0.1) hue-rotate(0deg) drop-shadow(0 0 0 #FF2E6B)'
+                  : '',
+              border: userHelper.category == 'Games' ? '#FF2E6B solid 2px' : '',
+              'border-radius': userHelper.category == 'Games' ? '10px' : ''
+            }"
+          />
+        </button>
+        <button (click)="setCategory('Saúde')">
+          <img
+            src="assets/health.png"
+            alt="logo"
+            width="90px"
+            height="40px"
+            class="mb-20"
+            [ngStyle]="{
+              filter:
+                userHelper.category == 'Saúde'
+                  ? 'saturate(200%) brightness(1.5) sepia(0.1) hue-rotate(0deg) drop-shadow(0 0 0 #FF2E6B)'
+                  : '',
+              border: userHelper.category == 'Saúde' ? '#FF2E6B solid 2px' : '',
+              'border-radius': userHelper.category == 'Saúde' ? '10px' : ''
+            }"
+          />
+        </button>
+        <button (click)="setCategory('Emergência')">
+          <img
+            src="assets/emergency.png"
+            alt="logo"
+            width="110px"
+            height="50px"
+            class="mb-20"
+            [ngStyle]="{
+              filter:
+                userHelper.category == 'Emergência'
+                  ? 'saturate(200%) brightness(1.5) sepia(0.1) hue-rotate(0deg) drop-shadow(0 0 0 #FF2E6B)'
+                  : '',
+              border:
+                userHelper.category == 'Emergência' ? '#FF2E6B solid 2px' : '',
+              'border-radius': userHelper.category == 'Emergência' ? '10px' : ''
+            }"
+          />
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="step == 2" class="flex flex-col">
+      <label class="text-[#3D3D3D]-500 text-md font-medium">
+        Fale um pouco mais
+      </label>
+      <label class="text-gray-500 text-xs">
+        Escreva mais detalhes sobre o seu helpinho, não economize nas palavras.
+      </label>
+
+      <div class="mt-2">
+        <label class="text-black-500 text-xs">Título do helpinho</label>
+        <input
+          [(ngModel)]="userHelper.title"
+          style="width: 100%"
+          class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Seu título aqui"
+          required="required"
+        />
+        <div
+          class="bg-white-50 border-gray-300 border p-1 h-21 rounded-lg flex flex-col items-center justify-center mt-2"
+        >
+          <img src="assets/cloud.png" alt="logo" />
+          <input
+            type="file"
+            class="opacity-0 w-full h-full cursor-pointer z-10"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          />
+          <div class="absolute mt-8 flex flex-row items-center justify-center">
+            <label class="text-red-600 text-xs font-medium">Selecione</label>
+            <label class="text-gray-600 text-xs ml-1">
+              ou arraste uma foto para representar seu helpinho
+            </label>
+            <br />
+          </div>
+          <label class="text-gray-600 text-xs">
+            SVG, PNG, JPG or GIF (max. 800x400)
+          </label>
+        </div>
+
+        <label class="text-black-500 text-xs">Descrição</label>
+        <textarea
+          [(ngModel)]="userHelper.description"
+          style="width: 100%"
+          class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-4 p-2 h-28 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Escreva a descrição do seu helpinho, não economize nas palavras"
+          required="required"
+        ></textarea>
+      </div>
+    </div>
+
+    <div *ngIf="step == 3" class="flex flex-col">
+      <label class="text-[#3D3D3D]-500 text-md font-medium">
+        De quanto você precisa?
+      </label>
+      <label class="text-gray-500 text-xs">
+        Defina a meta que você quer alcançar com seu helpinho
+      </label>
+
+      <div class="flex flex-row mt-20 gap-2 items-center">
+        <button
+          class="border border-[#f0f0f0] p-4 rounded-lg w-28 text-gray-500 text-xs flex flex-col items-center justify-center"
+          *ngFor="let item of quantities; let i = index"
+          (click)="selectValue(i)"
+          [ngStyle]="{
+            'border-color': item.active ? '#F40B59' : '#6b7280'
+          }"
+        >
+          <img
+            [src]="item.icon"
+            class="w-7 h-7 mb-2"
+            [ngStyle]="{
+              filter: item.active
+                ? 'saturate(200%) brightness(1.5) sepia(0.1) hue-rotate(0deg) drop-shadow(0 0 0 red)'
+                : ''
+            }"
+          />
+          <span [ngStyle]="{ color: item.active ? '#F40B59' : '#6b7280' }">
+            {{ item.stringValue }}
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="step == 4" class="flex flex-col">
+      <label class="text-[#3D3D3D]-500 text-md font-medium">
+        Falta pouco...
+      </label>
+      <label class="text-gray-500 text-xs">
+        Revise seu helpinho, veja se está como você gostaria antes de publicá-lo
+        para todos
+      </label>
+
+      <div class="shadow-md mt-4 w-64 h-72 rounded-xl ml-80">
+        <div style="width: 100%; height: 50%">
+          <img
+            [src]="userHelper.image"
+            style="width: 100%; height: 100%"
+            class="rounded-t-xl"
+          />
+          <div
+            class="relative bottom-8 left-40 bg-red-100 flex items-center justify-center p-2 px-4 w-20 h-6 rounded-full"
+          >
+            <label class="text-xs text-red-500 font-bold">
+              {{ userHelper.category }}
+            </label>
+          </div>
+        </div>
+        <div
+          style="width: 100%; height: 50%"
+          class="flex flex-col flex-wrap p-4"
+        >
+          <div class="flex flex-row justify-start items-start">
+            <i
+              class="fa fa-user bg-blue-100 p-2 rounded-full text-blue-800 w-8 h-8 flex items-center justify-center"
+            ></i>
+            <div class="flex flex-col justify-center items-start ml-2">
+              <label class="text-black-500 text-sm font-medium text-start">
+                {{ userHelper.user.name }}
+              </label>
+              <label class="text-grey-500 text-xs">
+                {{ userHelper.user.email }}
+              </label>
+            </div>
+          </div>
+          <label class="text-[#3D3D3D]-500 text-lg mt-4 font-medium">
+            {{ userHelper.title }}
+          </label>
+          <label class="text-gray-500 text-sm">
+            {{ userHelper.description }}
+          </label>
+          <label class="text-green-500 text-xs font-bold ml-2">
+            {{ userHelper.value }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row space-between gap-2 mb-44 ml-96">
+    <button
+      *ngIf="step == 1"
+      class="bg-white rounded-md text-xs p-1 px-2 border-2 border-[#E7E7E7] h-30 ml-96"
+      (click)="cancel()"
+    >
+      Cancelar
+    </button>
+    <button
+      *ngIf="step != 1"
+      class="bg-white rounded-md text-xs p-1 px-2 border-2 border-[#E7E7E7] h-30 ml-96"
+      (click)="previousStep()"
+    >
+      Voltar
+    </button>
+    <button
+      *ngIf="step < 4"
+      class="bg-[#F40B59] text-white rounded-md text-xs p-1 px-2"
+      (click)="nextStep()"
+    >
+      Continuar
+    </button>
+    <button
+      *ngIf="step == 4"
+      class="bg-[#F40B59] text-white rounded-md text-xs p-1 px-2"
+      (click)="submitHelper()"
+    >
+      Publicar
+    </button>
+  </div>
+</div>

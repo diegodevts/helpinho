@@ -1,0 +1,30 @@
+<body class="bg-[#F0F0F0] flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center w-42 mt-10 p-12">
+    <div class="flex flex-row justify-center items-center space-between gap-70">
+      <img
+        src="assets/logo.png"
+        alt="logo"
+        width="150px"
+        height="40px"
+        class="mr-80"
+      />
+      <div class="flex flex-row justify-center items-center ml-32">
+        <i
+          class="fa fa-user bg-blue-100 p-2 rounded-full text-blue-800 ml-20 w-8 h-8 flex items-center justify-center"
+        ></i>
+        <div class="flex flex-col justify-center items-start ml-2">
+          <label class="text-black-500 text-sm font-medium text-start">
+            {{ user.name }}
+          </label>
+          <label class="text-grey-500 text-xs">{{ user.email }}</label>
+        </div>
+        <button
+          class="bg-[#F40B59] p-2 rounded-lg h-8 flex items-center justify-center ml-4"
+        >
+          <i class="fa fa-arrow-right-from-bracket text-white"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <app-steps></app-steps>
+</body>

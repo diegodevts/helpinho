@@ -1,0 +1,146 @@
+<app-donate></app-donate>
+<body class="bg-white flex flex-row justify-center items-center">
+  <div
+    class="flex flex-col justify-center items-center h-screen w-42 mt-20 p-12"
+  >
+    <div class="flex flex-row fixed top-4 left-20 justify-center items-center">
+      <img src="assets/logo.png" alt="logo" width="150px" height="40px" />
+      <div class="flex flex-row space-between gap-12 ml-96">
+        <button
+          [ngStyle]="{
+            'border-bottom-color': page == 0 ? '#F40B59' : 'grey',
+            color: page == 0 ? '#F40B59' : 'grey'
+          }"
+          (click)="setPage(0)"
+          [ngClass]="page == 0 ? 'border-b-2 bold' : ''"
+          class="bg-white"
+        >
+          Home
+        </button>
+        <button
+          [ngStyle]="{
+            'border-bottom-color': page == 1 ? '#F40B59' : 'grey',
+            color: page == 1 ? '#F40B59' : 'grey'
+          }"
+          (click)="setPage(1)"
+          [ngClass]="page == 1 ? 'border-b-2 bold' : ''"
+          class="bg-white"
+        >
+          Pesquisa
+        </button>
+        <button
+          [ngStyle]="{
+            'border-bottom-color': page == 2 ? '#F40B59' : 'grey',
+            color: page == 2 ? '#F40B59' : 'grey'
+          }"
+          (click)="setPage(2)"
+          [ngClass]="page == 2 ? 'border-b-2 bold' : ''"
+          class="bg-white"
+        >
+          Sobre
+        </button>
+      </div>
+      <i
+        class="fa fa-user bg-blue-100 p-2 rounded-full text-blue-800 ml-80 w-8 h-8 flex items-center justify-center"
+      ></i>
+      <div class="flex flex-col justify-center items-start ml-2">
+        <label class="text-black-500 text-sm font-medium text-start">
+          {{ user.name }}
+        </label>
+        <label class="text-grey-500 text-xs">{{ user.email }}</label>
+      </div>
+      <button
+        class="bg-[#F40B59] p-2 rounded-lg h-8 flex items-center justify-center ml-4"
+        (click)="logout()"
+      >
+        <i class="fa fa-arrow-right-from-bracket text-white"></i>
+      </button>
+    </div>
+  </div>
+
+  <button
+    *ngIf="!hasHelper"
+    (click)="createHelper()"
+    class="bg-red-50 text-[#AC0546] border-dashed border-red-600 rounded-xl p-4 mr-40"
+    style="border-width: 1px; width: 90%; height: 80%"
+  >
+    Seu helpinho aqui
+  </button>
+
+  <div style="width: 100%; height: 80%" *ngIf="hasHelper">
+    <button
+      class="bg-red-500 p-2 rounded-lg text-white"
+      *ngIf="hasHelper"
+      (click)="createHelper()"
+    >
+      <i class="fas fa-plus text-white"></i>
+      Adicionar helpinho
+    </button>
+    <div class="flex flex-row flex-wrap gap-2 mt-4">
+      <div
+        class="shadow-md w-64 h-72 rounded-xl"
+        style="cursor: pointer"
+        *ngFor="let helper of helpers; let i = index"
+        (mouseover)="setDonate(true, i, helper)"
+        (mouseleave)="setDonate(false, i, helper)"
+      >
+        <div
+          *ngIf="donateIndex === i && helper.user.email != user.email"
+          style="background-color: rgba(0, 0, 0, 0.5)"
+          class="absolute z-10 rounded-xl w-64 h-72 flex justify-center items-center"
+        >
+          <button
+            *ngIf="donateIndex === i && helper.user.email != user.email"
+            class="bg-green-300 p-2 px-10 rounded-lg text-green-900 z-50"
+            (click)="donate(helper)"
+          >
+            <i class="fas fa-circle-dollar-to-slot"></i>
+            Doar
+          </button>
+        </div>
+
+        <div style="width: 100%; height: 50%">
+          <img
+            [src]="helper.image"
+            style="width: 100%; height: 100%"
+            class="rounded-t-xl"
+          />
+          <div
+            class="relative bottom-8 left-40 bg-red-100 flex items-center justify-center p-2 px-4 w-20 h-6 rounded-full"
+          >
+            <label class="text-xs text-red-500 font-bold">
+              {{ helper.category }}
+            </label>
+          </div>
+        </div>
+        <div
+          style="width: 100%; height: 50%"
+          class="flex flex-col p-4 flex-wrap"
+        >
+          <div class="flex flex-row justify-start items-start">
+            <i
+              class="fa fa-user bg-blue-100 p-2 rounded-full text-blue-800 w-8 h-8 flex items-center justify-center"
+            ></i>
+            <div class="flex flex-col justify-center items-start ml-2">
+              <label class="text-black-500 text-sm font-medium text-start">
+                {{ helper.user.name }}
+              </label>
+              <label class="text-grey-500 text-xs">
+                {{ helper.user.email }}
+              </label>
+            </div>
+          </div>
+          <label class="text-[#3D3D3D]-500 text-lg mt-4 font-medium">
+            {{ helper.title }}
+          </label>
+          <label class="text-gray-500 text-sm">
+            {{ helper.description }}
+          </label>
+          <label class="relative right-8 text-green-500 text-xs font-medium">
+            {{ helper.goal }}/{{ helper.value }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

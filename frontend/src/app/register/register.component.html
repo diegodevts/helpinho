@@ -1,0 +1,127 @@
+<body class="bg-white flex flex-row justify-center items-center">
+  <section class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center h-96 w-42 mt-10 p-12">
+      <h1 class="text-black-500 text-2xl">Registre-se grátis</h1>
+      <p class="text-black-500 mb-10 text-sm">
+        Seja bem vindo! Estamos felizes em tê-lo conosco!
+      </p>
+      <div class="fixed top-8 left-16">
+        <img src="assets/logo.png" alt="logo" width="150px" height="50px" />
+      </div>
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="w-50 h-96 flex flex-col justify-center items-center"
+      >
+        <div class="mb-6">
+          <label
+            for="nome"
+            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Nome
+          </label>
+          <input
+            type="name"
+            id="name"
+            formControlName="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="John Doe"
+            required="required"
+          />
+          <small
+            class="text-red-500 text-sm"
+            *ngIf="submitted && f['name'].errors"
+          >
+            Nome is required.
+          </small>
+        </div>
+        <div class="mb-6">
+          <label
+            for="email"
+            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="john.doe@company.com"
+            required="required"
+          />
+          <small
+            class="text-red-500 text-sm"
+            *ngIf="submitted && f['email'].errors"
+          >
+            Email is required.
+          </small>
+        </div>
+        <div class="mb-6">
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Senha
+          </label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="•••••••••"
+            required="required"
+          />
+          <small
+            class="text-red-500 text-sm"
+            *ngIf="submitted && f['password'].errors"
+          >
+            Password is required.
+          </small>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="phone"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Telefone
+          </label>
+          <input
+            type="phone"
+            id="phone"
+            formControlName="phone"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="71999999999"
+            required="required"
+          />
+          <small
+            class="text-red-500 text-sm"
+            *ngIf="submitted && f['phone'].errors"
+          >
+            Phone is required.
+          </small>
+        </div>
+        <button
+          type="submit"
+          class="bg-[#F40B59] text-white bg-[#F40B59]-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-[#F40B59]-300 font-medium rounded-lg text-sm w-96 px-40 py-2.5 text-center dark:bg-[#F40B59]-600 dark:hover:bg-[#F40B59]-700 dark:focus:ring-[#F40B59]-800"
+        >
+          Registrar
+        </button>
+      </form>
+      <footer class="flex flex-row space-between gap-96 mt-12">
+        <label class="text-sm text-[#5D5D5D]">© Helpinho 2077</label>
+        <label class="text-sm text-[#5D5D5D]">help&#64;helpinho.com</label>
+      </footer>
+    </div>
+  </section>
+  <section style="height: 100vh">
+    <img
+      src="assets/Section_register.png"
+      alt="logo"
+      height="1000px"
+      width="440px"
+      class="mt-10"
+    />
+  </section>
+</body>

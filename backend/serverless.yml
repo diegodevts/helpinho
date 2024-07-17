@@ -1,0 +1,81 @@
+app: backend-serverless
+service: backend-serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  create-user:
+    handler: src/controllers/user/index.create
+    events:
+      - httpApi:
+          path: /users
+          method: post
+  find-user:
+    handler: src/controllers/user/index.find
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
+  update-user:
+    handler: src/controllers/user/index.update
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: put
+  delete-user:
+    handler: src/controllers/user/index._delete
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: delete
+  login:
+    handler: src/controllers/user/index.login
+    events:
+      - httpApi:
+          path: /user/login
+          method: post
+
+  create-helper:
+    handler: src/controllers/help/index.create
+    events:
+      - httpApi:
+          path: /helper
+          method: post
+  find-helper:
+    handler: src/controllers/help/index.find
+    events:
+      - httpApi:
+          path: /helper/{id}
+          method: get
+  update-helper:
+    handler: src/controllers/help/index.update
+    events:
+      - httpApi:
+          path: /helper/{id}
+          method: put
+  delete-helper:
+    handler: src/controllers/help/index._delete
+    events:
+      - httpApi:
+          path: /helper/{id}
+          method: delete
+  donate-help:
+    handler: src/controllers/help/index.donate
+    events:
+      - httpApi:
+          path: /helper/donate
+          method: post
+  find-many-helps:
+    handler: src/controllers/help/index.findAll
+    events:
+      - httpApi:
+          path: /helpers
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-localstack
+  - serverless-offline

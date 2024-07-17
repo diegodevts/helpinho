@@ -1,0 +1,37 @@
+<div
+  *ngIf="isOpen"
+  style="background-color: rgba(0, 0, 0, 0.5)"
+  class="absolute z-50 w-full h-full flex justify-center items-center"
+>
+  <div
+    class="bg-white shadow-md w-80 h-40 rounded-xl flex flex-col items-center p-4"
+    style="cursor: pointer"
+  >
+    <h2 class="text-[#3D3D3D]-500 text-xl font-medium">Doação</h2>
+    <div class="mt-2 w-full">
+      <label class="text-black-500 text-xs">Digite um valor para doar</label>
+      <input
+        [(ngModel)]="value"
+        style="width: 100%"
+        type="number"
+        class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Seu valor aqui"
+        required="required"
+      />
+
+      <button
+        class="bg-white rounded-md text-xs p-1 px-2 border-2 border-[#E7E7E7] ml-40 mt-2"
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="bg-[#F40B59] text-white rounded-md text-xs p-1 px-2 ml-2"
+        (click)="sendDonation()"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>

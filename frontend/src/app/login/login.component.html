@@ -1,0 +1,78 @@
+<body class="bg-white flex flex-row justify-center items-center">
+    <section>
+
+        <div class="flex flex-col justify-center items-center h-96 w-42 mt-20 p-12">
+            <div class="fixed top-5 left-20">
+                <img src="assets/logo.png" alt="logo" width="150px" height="50px"></div>
+                <h1 class="text-black-500 text-3xl">Bem vindo de volta</h1>
+                <p class="text-black-500">Entre e ajude os helpinhos de hoje</p>
+
+                <form
+                    [formGroup]="emailForm"
+                    (ngSubmit)="onSubmit()"
+                    class="w-50 flex flex-col justify-center items-center">
+                    <div class="mb-6">
+                        <label
+                            for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            formControlName="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="john.doe@company.com"
+                            required="required"/>
+                        <small
+                            class="text-red-500 text-sm"
+                            *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.errors?.['required'] && emailForm.get('email')?.touched">Email is required.</small>
+                    </div>
+                    <div class="mb-6">
+                        <label
+                            for="password"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
+                        <input
+                            type="password"
+                            id="password"
+                            formControlName="password"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="•••••••••"
+                            required="required"/>
+                        <small
+                            class="text-red-500 text-sm"
+                            *ngIf="emailForm.get('password')?.invalid && emailForm.get('password')?.errors?.['required'] && emailForm.get('password')?.touched">Password is required.</small>
+                    </div>
+
+                    <div
+                        class="flex flex-row space-between w-96 justify-center item-center py-2 gap-20">
+                        <div class="flex flex-row items-start justify-center">
+                            <input type="checkbox" name="remember" checked="checked">
+                                <label class="ml-1 text-sm w-40 text-sm text-black-500">Rememeber for 30 days</label>
+                            </div>
+
+                            <a style="cursor: pointer;" class="w-60 text-sm text-red-500 font-bold">Esqueceu a senha?</a>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="bg-[#F40B59] text-white bg-[#F40B59]-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-[#F40B59]-300 font-medium rounded-lg text-sm w-96 px-40 py-2.5 text-center dark:bg-[#F40B59]-600 dark:hover:bg-[#F40B59]-700 dark:focus:ring-[#F40B59]-800">Entrar</button>
+                        <div class="flex flex-row justify-center mt-10">
+                            <p>Ainda não conhece o helpinho?
+                            </p>
+                            <a
+                                style="cursor: pointer;"
+                                class="text-red-500 font-bold ml-1"
+                                (click)="navigateTo('register')">Registre-se grátis</a>
+                        </div>
+                    </form>
+
+                    <footer class="flex flex-row space-between gap-96 mt-20">
+                        <label class="text-sm text-[#5D5D5D]">© Helpinho 2077</label>
+                        <label class="text-sm text-[#5D5D5D]">help&#64;helpinho.com</label>
+                    </footer>
+                </div>
+
+            </section>
+            <section style="height: 100vh">
+                <img src="assets/Section.png" alt="logo" height="1000px" width="440px" class="mt-10">
+              </section>
+            </body>

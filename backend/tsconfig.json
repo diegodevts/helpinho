@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "target": "es2020",
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strictNullChecks": true,
+    "strict": false
+  }
+}
