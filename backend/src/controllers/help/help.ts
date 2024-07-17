@@ -54,7 +54,6 @@ export class HelpersController {
         body: JSON.stringify({ message: 'Succesfuly created!', code: 201 })
       }
     } catch (err: any) {
-      console.log(err)
       return {
         statusCode: 500,
         body: JSON.stringify({ message: 'Internal Server Error', code: 500 })
@@ -141,7 +140,6 @@ export class HelpersController {
         body: JSON.stringify({ helpers, code: 200 })
       }
     } catch (err: any) {
-      console.log(err)
       if (err instanceof ResourceNotFoundError) {
         return {
           statusCode: 404,

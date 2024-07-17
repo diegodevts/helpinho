@@ -28,7 +28,6 @@ export class DynamoUserRepository
     }
 
     const id = randomUUID()
-    console.log(id)
 
     await dynamoDBClient()
       .putItem({

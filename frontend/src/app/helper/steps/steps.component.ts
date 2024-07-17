@@ -6,6 +6,7 @@ import { UserService } from '../../user/user.service'
 import { HttpClient } from '@angular/common/http'
 import { HttpService } from '../../http/http.service'
 import { HelperDto } from '../../../../../shared/dtos/helper/helper.dto'
+import { NotificationComponent } from '../../notification/notification.component'
 
 @Component({
   selector: 'app-steps',
@@ -75,7 +76,11 @@ export class StepsComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router, private http: HttpService) {}
+  constructor(
+    private router: Router,
+    private http: HttpService,
+    private notification: NotificationComponent
+  ) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user')!)
@@ -89,10 +94,12 @@ export class StepsComponent implements OnInit {
   submitHelper() {
     this.http.createHelper(this.userHelper).subscribe(
       (response) => {
-        // this.notification.notify()
         if (response.name == 'TokenExpiredError') {
+          this.notification.showError('Token expirado')
           this.router.navigate(['/'])
         }
+
+        this.notification.showSuccess('Helpinho criado com sucesso!')
       },
       (error) => {
         console.log(error)

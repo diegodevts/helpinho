@@ -10,6 +10,7 @@ import { Router } from '@angular/router'
 import { HttpService } from '../http/http.service'
 import { UserDto } from '../../../../shared/dtos/user/user.dto'
 import { HttpClientModule } from '@angular/common/http'
+import { NotificationComponent } from '../notification/notification.component'
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private http: HttpService
+    private http: HttpService,
+    private notification: NotificationComponent
   ) {}
 
   ngOnInit() {
@@ -54,8 +56,8 @@ export class RegisterComponent implements OnInit {
 
       this.http.createUser(user).subscribe(
         (response) => {
-          // this.notification.notify()
-          console.log(response)
+          this.notification.showSuccess('Registrado com sucesso!')
+
           this.submitted = false
         },
         (error) => {
@@ -66,7 +68,7 @@ export class RegisterComponent implements OnInit {
 
       this.navigateTo('')
     } else {
-      //  this.notification.notify("Dados incorretos")
+      this.notification.showError('Existem campos vazios')
     }
   }
 

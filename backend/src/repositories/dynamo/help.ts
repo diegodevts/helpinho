@@ -12,7 +12,6 @@ export class DynamoHelperRepository
 {
   async create(payload: HelperDto): Promise<void> {
     const id = randomUUID()
-    console.log(id)
 
     await dynamoDBClient()
       .putItem({
@@ -123,7 +122,6 @@ export class DynamoHelperRepository
     }
 
     const result = await dynamoDBClient().scan(params).promise()
-    console.log(result?.Items)
 
     const helpers: Helper[] =
       result.Items?.map((item) => ({

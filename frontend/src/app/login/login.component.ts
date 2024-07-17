@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router'
 import { HttpService } from '../http/http.service'
 import { UserService } from '../user/user.service'
+import { NotificationComponent } from '../notification/notification.component'
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private http: HttpService,
-    private userService: UserService
+    private notification: NotificationComponent
   ) {}
 
   navigateTo(component: string) {
@@ -48,18 +49,16 @@ export class LoginComponent implements OnInit {
 
       this.http.login(userLogin).subscribe(
         (response) => {
-          // this.notification.notify()
+          this.notification.showSuccess('Logado com sucesso!')
           console.log(response)
           localStorage.setItem('token', response.token)
           localStorage.setItem('user', JSON.stringify(response.user))
           this.navigateTo('/home')
         },
         (error) => {
-          console.error(error)
+          this.notification.showError(error)
         }
       )
-    } else {
-      //  this.notification.notify("Dados incorretos")
     }
   }
 }

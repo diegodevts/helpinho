@@ -9,6 +9,7 @@ import { HttpService } from '../http/http.service'
 import { Helper } from '../../../../backend/src/types'
 import { DonateComponent } from '../helper/donate/donate.component'
 import { DonateService } from '../helper/donate/donate.service'
+import { NotificationComponent } from '../notification/notification.component'
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private modalService: DonateService,
-    private http: HttpService
+    private http: HttpService,
+    private notification: NotificationComponent
   ) {}
 
   openModal(userDestination: string) {
@@ -43,6 +45,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     localStorage.clear()
+    this.notification.showSuccess('Deslogado com sucesso')
     this.router.navigate(['/'])
   }
   ngOnInit(): void {
@@ -60,8 +63,6 @@ export class HomeComponent implements OnInit {
   search() {
     this.http.getHelpers(10).subscribe(
       (response) => {
-        // this.notification.notify()
-
         this.helpers = response.helpers
         this.hasHelper = response.helpers.length > 0
       },

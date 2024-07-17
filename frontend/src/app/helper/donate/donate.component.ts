@@ -5,6 +5,7 @@ import { Router } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { DonateService } from './donate.service'
 import { HttpService } from '../../http/http.service'
+import { NotificationComponent } from '../../notification/notification.component'
 
 @Component({
   selector: 'app-donate',
@@ -14,14 +15,17 @@ import { HttpService } from '../../http/http.service'
   styleUrl: './donate.component.css'
 })
 export class DonateComponent implements OnInit {
-  constructor(private modalService: DonateService, private http: HttpService) {}
+  constructor(
+    private modalService: DonateService,
+    private http: HttpService,
+    private notification: NotificationComponent
+  ) {}
   value!: number
   isOpen: boolean = false
   userDonation!: string
 
   ngOnInit() {
     this.modalService.modalState$.subscribe((state: boolean) => {
-      console.log(state)
       this.isOpen = state
     })
 
@@ -37,7 +41,7 @@ export class DonateComponent implements OnInit {
   sendDonation() {
     this.http.donateHelper(this.value.toString(), this.userDonation).subscribe(
       (data) => {
-        console.log(data)
+        this.notification.showSuccess('Doação feita com sucesso!')
       },
       (err) => console.log(err)
     )
