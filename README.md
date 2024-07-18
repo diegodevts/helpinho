@@ -1,7 +1,5 @@
 # Helpinho
 
-Esse projeto foi desenvolvido para a avaliação da empresa LBCA
-
 ## Tecnologias e metodologias utilizadas
 
 **Back-end:** Node, Serverless, DynamoDB
